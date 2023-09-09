@@ -136,7 +136,7 @@
             inputWrapper.insertAdjacentHTML('beforeend',
                 '<div class="col-md-6 mb-3"><label class="form-label" for="inputFuelUsage">Amount</label><input class="form-control" min="2" step="0.01" name="fuel_usage[' +
                 i +
-                '][amount]" type="number" value="0"> </div> <div class="col-md-6 mb-3"><label class="form-label" for="inputFuelUsage">Fuel Type</label><select aria-describedby="fuelUsageFeedback" aria-label="Fuel Usage" class="form-select" id="inputFuelUsage" name="fuel_usage[' +
+                '][amount]" type="number" value="2"> </div> <div class="col-md-6 mb-3"><label class="form-label" for="inputFuelUsage">Fuel Type</label><select aria-describedby="fuelUsageFeedback" aria-label="Fuel Usage" class="form-select" id="inputFuelUsage" name="fuel_usage[' +
                 i +
                 '][fuel_type]"><option selected>Select fuel type...</option> @foreach ($fuelTypes as $fuelType) <option value="{{ $fuelType->id }}">{{ $fuelType->name }}</option> @endforeach </select> </div>'
             );

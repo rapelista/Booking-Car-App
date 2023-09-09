@@ -11,10 +11,8 @@ use App\Models\Car;
 use App\Models\CarFuelUsage;
 use App\Models\Driver;
 use App\Models\FuelType;
-use App\Models\Role;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
@@ -144,5 +142,14 @@ class BookingController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function approve(string $bookingId)
+    {
+        Approval::where('user_id', auth()->user()->id)->where('booking_id', $bookingId)->update([
+            'is_approved' => true,
+        ]);
+
+        return redirect()->route('dashboard.index')->with('success', 'Booking approved!');
     }
 }

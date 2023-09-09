@@ -7,6 +7,7 @@
         <div class="col">
             <div class="card shadow mb-4">
                 <div class="card-body">
+
                     <div class="table-responsive">
                         <table
                             cellspacing="0"
@@ -49,7 +50,7 @@
                                                     </span>
                                                 </h4>
                                             @endif
-                                            @foreach ($booking->approvers->reverse() as $approver)
+                                            @foreach ($booking->approvers as $approver)
                                                 <div class="row">
                                                     <div class="col-4 text-start">
                                                         <span class="badge bg-info">
@@ -60,7 +61,7 @@
                                                         {{ $approver->name }}
                                                     </div>
                                                     <div class="col-4 text-end">
-                                                        @if ($booking->approvals->get($loop->index)->is_approved)
+                                                        @if ($booking->approvals->where('user_id', $approver->id)->first()->is_approved)
                                                             <span class="badge bg-success">APPROVED</span>
                                                         @else
                                                             <span class="badge bg-warning">PROCESS</span>

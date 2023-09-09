@@ -15,4 +15,6 @@ Route::prefix('dashboard')
 
         Route::get('bookings/{booking}/done', [BookingController::class, 'done'])->name('bookings.done');
         Route::post('bookings/{booking}/done', [BookingController::class, 'update'])->name('bookings.done.post');
+
+        Route::get('bookings/{booking}/approve', [BookingController::class, 'approve'])->name('bookings.approve');
     });

@@ -13,6 +13,9 @@ class FuelTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        FuelType::create(['name' => 'Pertamax']);
+        FuelType::create(['name' => 'Pertamax Turbo']);
+        FuelType::create(['name' => 'Pertalite']);
+        FuelType::create(['name' => 'Dexlite']);
+        FuelType::create(['name' => 'Solar']);
     }
 }
