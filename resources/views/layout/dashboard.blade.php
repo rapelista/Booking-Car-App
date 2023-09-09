@@ -21,7 +21,7 @@
             name="author"
         >
 
-        <title>SB Admin 2 - Dashboard</title>
+        <title>{{ config('app.name') }} - Dashboard</title>
 
         <!-- Custom fonts for this template-->
         <link
@@ -35,7 +35,7 @@
         >
 
         <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+            href="{{ asset('vendor/bootstrap-5.3.1/css/bootstrap.min.css') }}"
             rel="stylesheet"
         >
 
@@ -91,16 +91,7 @@
                         <script src="{{ asset('vendor/chart.js/Chart.min.js') }}"></script>
                         <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
                         <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-                        <script
-                            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-                            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-                            crossorigin="anonymous"
-                        ></script>
-                        <script
-                            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
-                            integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
-                            crossorigin="anonymous"
-                        ></script>
+                        <script src="{{ asset('vendor/bootstrap-5.3.1/js/bootstrap.bundle.min.js') }}"></script>
 
                         @yield('content')
 
@@ -114,7 +105,7 @@
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <span>Copyright &copy; Your Website 2021</span>
+                            <span>Copyright &copy; {{ config('app.name') }} 2021</span>
                         </div>
                     </div>
                 </footer>
@@ -137,9 +128,8 @@
         <x-modal.logout />
 
         <!-- Page level custom scripts -->
-        <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script>
-        <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script>
-        <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
+        {{-- <script src="{{ asset('js/demo/chart-area-demo.js') }}"></script> --}}
+        {{-- <script src="{{ asset('js/demo/chart-pie-demo.js') }}"></script> --}}
     </body>
 
 </html>

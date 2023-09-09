@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Exports\BookingExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
@@ -13,6 +14,8 @@ use App\Models\Driver;
 use App\Models\FuelType;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
+use Maatwebsite\Excel\Facades\Excel;
 
 class BookingController extends Controller
 {
@@ -21,10 +24,25 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::orderByDesc('created_at')->get();
+        $bookings = Booking::orderByDesc('operation_date')->get();
+        $bookings = $bookings->groupBy('is_done');
+
+        if (empty($bookings)) {
+            $bookings = [[], []];
+        } else {
+
+            if (!isset($bookings[1])) {
+                $bookings[1] = [];
+            }
+
+            if (!isset($bookings[0])) {
+                $bookings[0] = [];
+            }
+        }
 
         return view('dashboard.bookings.index', [
-            'bookings' => $bookings,
+            'bookingsDone' => $bookings[1],
+            'bookingsProcess' => $bookings[0],
         ]);
     }
 
@@ -33,7 +51,6 @@ class BookingController extends Controller
      */
     public function create()
     {
-
         $timeNow = Carbon::now('Asia/Jakarta')->format('Y-m-d');
 
         $cars = Car::where('is_available', true)->get();
@@ -56,7 +73,7 @@ class BookingController extends Controller
         $booking = Booking::create([
             'driver_id' => $request->driver,
             'car_id' => $request->car,
-            'operation_date' => now(),
+            'operation_date' => Carbon::createFromFormat('Y-m-d', $request->operation_date),
             'notes' => $request->notes,
         ]);
 
@@ -94,6 +111,10 @@ class BookingController extends Controller
      */
     public function done(Booking $booking)
     {
+        if (!Gate::allows('mark-done-booking')) {
+            abort(403);
+        }
+
         if (!$booking->is_approved_by_all()) {
             return redirect()->back();
         }
@@ -112,6 +133,10 @@ class BookingController extends Controller
      */
     public function update(UpdateBookingRequest $request, Booking $booking)
     {
+        if (!Gate::allows('mark-done-booking')) {
+            abort(403);
+        }
+
         $booking->update([
             'is_done' => true,
         ]);
@@ -151,5 +176,12 @@ class BookingController extends Controller
         ]);
 
         return redirect()->route('dashboard.index')->with('success', 'Booking approved!');
+    }
+
+    public function export()
+    {
+        redirect()->route('bookings.index')->with('success', 'Downloaded successfully!');
+
+        return Excel::download(new BookingExport, 'bookings-' . now()->timestamp . '.xlsx');
     }
 }

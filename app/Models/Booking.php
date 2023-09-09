@@ -47,4 +47,9 @@ class Booking extends Model
 
         return $status;
     }
+
+    public function fuel_usages()
+    {
+        return $this->hasMany(CarFuelUsage::class);
+    }
 }

@@ -21,7 +21,7 @@
             name="author"
         >
 
-        <title>SB Admin 2 - Login</title>
+        <title>{{ config('app.name') }} - Login</title>
 
         <!-- Custom fonts for this template-->
         <link
@@ -49,18 +49,25 @@
             <!-- Outer Row -->
             <div class="row justify-content-center">
 
-                <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="col-xl-5 col-md-6">
 
-                    <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div
+                        class="card @if (session()->has('error') or $errors->any()) border-left-danger @else border-left-light @endif shadow my-5">
                         <div class="card-body p-0">
                             <!-- Nested Row within Card Body -->
                             <div class="row">
-                                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                                <div class="col-lg-6">
+                                <div class="col">
                                     <div class="p-5">
                                         <div class="text-center">
                                             <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                         </div>
+                                        @if (session()->has('error'))
+                                            <div class="card bg-danger text-white mb-3">
+                                                <div class="card-body">
+                                                    {{ session()->get('error') }}
+                                                </div>
+                                            </div>
+                                        @endif
                                         <form
                                             class="user"
                                             method="POST"
@@ -68,17 +75,19 @@
                                             @csrf
                                             <div class="form-group">
                                                 <input
-                                                    class="form-control form-control-user"
+                                                    class="form-control form-control-user @if ($errors->any()) is-invalid @endif"
                                                     id="inputUsername"
                                                     name="username"
                                                     placeholder="Username"
                                                     required
                                                     type="text"
+                                                    value="{{ old('username') }}"
                                                 >
                                             </div>
                                             <div class="form-group">
                                                 <input
-                                                    class="form-control form-control-user"
+                                                    @if ($errors->any()) autofocus @endif
+                                                    class="form-control form-control-user @if ($errors->any()) is-invalid focused @endif"
                                                     id="inputPassword"
                                                     name="password"
                                                     placeholder="Password"

@@ -26,9 +26,7 @@ class AuthController extends Controller
             return redirect()->intended('dashboard');
         }
 
-        return back()->withErrors([
-            'login_error' => 'Authentication failed, please try again/Users/gustang/Desktop/belajar-laravel/ngasprak-gcr/resources/views/layout!',
-        ])->onlyInput('username');
+        return redirect()->back()->with('error', 'Authentication failed, try again!');
     }
 
     public function logout(Request $request)

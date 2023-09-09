@@ -77,7 +77,6 @@
                                 type="date"
                                 value="{{ $timeNow }}"
                             />
-
                         </div>
                         <div class="col-md-4">
                             <label for="inputApprovers">Approvers</label>

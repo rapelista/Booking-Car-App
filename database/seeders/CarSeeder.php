@@ -13,7 +13,7 @@ class CarSeeder extends Seeder
      */
     public function run(): void
     {
-        foreach (range(1, 10) as $i) {
+        foreach (range(1, 20) as $i) {
             Car::create([
                 'name' => 'Mobil ' . $i,
                 'is_available' => true,

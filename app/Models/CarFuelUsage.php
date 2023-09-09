@@ -12,4 +12,9 @@ class CarFuelUsage extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function fuel_type()
+    {
+        return $this->belongsTo(FuelType::class);
+    }
 }
