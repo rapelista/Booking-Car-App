@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('driver_id')->constrained()->onDelete('cascade');
             $table->foreignId('car_id')->constrained()->onDelete('cascade');
             $table->timestamp('operation_date');
-            $table->boolean('is_done');
-            $table->string('description');
+            $table->boolean('is_done')->default(false);
+            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }

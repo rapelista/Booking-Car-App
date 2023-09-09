@@ -177,7 +177,7 @@
                         <img
                             alt="..."
                             class="rounded-circle"
-                            src="img/undraw_profile_1.svg"
+                            src="{{ asset('img/undraw_profile_1.svg') }}"
                         >
                         <div class="status-indicator bg-success"></div>
                     </div>
@@ -196,7 +196,7 @@
                         <img
                             alt="..."
                             class="rounded-circle"
-                            src="img/undraw_profile_2.svg"
+                            src="{{ asset('img/undraw_profile_2.svg') }}"
                         >
                         <div class="status-indicator"></div>
                     </div>
@@ -215,7 +215,7 @@
                         <img
                             alt="..."
                             class="rounded-circle"
-                            src="img/undraw_profile_3.svg"
+                            src="{{ asset('img/undraw_profile_3.svg') }}"
                         >
                         <div class="status-indicator bg-warning"></div>
                     </div>

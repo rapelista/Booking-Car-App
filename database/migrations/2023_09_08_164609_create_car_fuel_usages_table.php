@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('car_fuel_usages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('booking_id')->constrained()->onDelete('cascade');
+            $table->foreignId('car_id')->constrained()->onDelete('cascade');
             $table->foreignId('fuel_type_id')->constrained()->onDelete('cascade');
-            $table->float('usage');
+            $table->float('amount');
             $table->timestamps();
         });
     }

@@ -1,5 +1,5 @@
 <ul
-    class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+    class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled"
     id="accordionSidebar"
 >
 
@@ -18,10 +18,10 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
+    <li class="nav-item @if (url()->current() == route('dashboard.index')) active @endif">
         <a
             class="nav-link"
-            href="index.html"
+            href="{{ route('dashboard.index') }}"
         >
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -32,8 +32,28 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Interface
+        Booking
     </div>
+
+    <li class="nav-item @if (url()->current() == route('bookings.index')) active @endif">
+        <a
+            class="nav-link"
+            href="{{ route('bookings.index') }}"
+        >
+            <i class="fas fa-fw fa-table"></i>
+            <span>Bookings</span></a>
+    </li>
+
+    <li class="nav-item @if (url()->current() == route('bookings.create')) active @endif">
+        <a
+            class="nav-link"
+            href="{{ route('bookings.create') }}"
+        >
+            <i class="fas fa-fw fa-plus"></i>
+            <span>New Booking</span></a>
+    </li>
+
+    <hr class="sidebar-divider">
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
@@ -200,9 +220,10 @@
         <img
             alt="..."
             class="sidebar-card-illustration mb-2"
-            src="img/undraw_rocket.svg"
+            src="{{ asset('img/undraw_rocket.svg') }}"
         >
-        <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!
+        <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and
+            more!
         </p>
         <a
             class="btn btn-success btn-sm"

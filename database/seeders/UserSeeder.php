@@ -39,5 +39,12 @@ class UserSeeder extends Seeder
             'username' => 'supervisor',
             'password' => 'password'
         ]);
+
+        User::create([
+            'role_id' => 4,
+            'name' => 'Supervisor 2',
+            'username' => 'supervisor_2',
+            'password' => 'password'
+        ]);
     }
 }
