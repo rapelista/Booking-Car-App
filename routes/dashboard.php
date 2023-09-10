@@ -13,10 +13,6 @@ Route::prefix('dashboard')
         Route::get('/', [DashboardController::class, 'index'])
             ->name('dashboard.index');
 
-
-        Route::resource('bookings', BookingController::class)
-            ->except(['edit', 'destroy']);
-
         Route::get('bookings/export', [BookingController::class, 'export'])
             ->name('bookings.export');
 
@@ -28,6 +24,9 @@ Route::prefix('dashboard')
 
         Route::get('bookings/{booking}/approve', [BookingController::class, 'approve'])
             ->name('bookings.approve');
+
+        Route::resource('bookings', BookingController::class)
+            ->except(['edit', 'destroy']);
 
         Route::resource('services', CarServiceController::class);
     });
