@@ -43,6 +43,14 @@ php artisan migrate:fresh --seed
 php artisan serve
 ```
 
+### Daftar User
+
+| Username | Password | Role     |
+| -------- | -------- | -------- |
+| admin    | password | admin    |
+| manager  | password | manager  |
+| director | password | director |
+
 ## Informasi lainnya
 
 -   PHP 8.2.9
